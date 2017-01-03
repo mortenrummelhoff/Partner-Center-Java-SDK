@@ -15,6 +15,7 @@ import com.microsoft.store.partnercenter.exception.PartnerException;
 import com.microsoft.store.partnercenter.factory.IPartnerFactory;
 import com.microsoft.store.partnercenter.factory.StandardPartnerFactory;
 import com.microsoft.store.partnercenter.logging.PartnerLog;
+import com.microsoft.store.partnercenter.logging.SLF4JLogger;
 import com.microsoft.store.partnercenter.logging.SystemOutLogger;
 import com.microsoft.store.partnercenter.retries.ExponentialBackOffRetryPolicy;
 import com.microsoft.store.partnercenter.retries.IRetryPolicy;
@@ -43,8 +44,8 @@ public class PartnerService
         setFactory( new StandardPartnerFactory() );
         // define the default retry policy as exponential with 3 retry attempts
         setRetryPolicy( new ExponentialBackOffRetryPolicy( getConfiguration().getDefaultMaxRetryAttempts() ) );
-        // log to the debugger window
-        PartnerLog.getInstance().getLoggers().add( new SystemOutLogger() );
+        // log to the slf4J
+        PartnerLog.getInstance().getLoggers().add( new SLF4JLogger() );
     }
 
     
