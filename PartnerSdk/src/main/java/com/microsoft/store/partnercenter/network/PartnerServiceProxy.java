@@ -8,7 +8,6 @@ package com.microsoft.store.partnercenter.network;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
@@ -393,11 +392,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
         RequestBuilder request = RequestBuilder.post( this.buildPartnerServiceApiUri() );
         try
         {
-            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ) ) );
-        }
-        catch ( UnsupportedEncodingException e )
-        {
-            throw new PartnerException( "", this.requestContext, PartnerErrorCategory.REQUEST_PARSING );
+            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ), "UTF-8" ) );
         }
         catch ( JsonProcessingException e )
         {
@@ -419,11 +414,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
         RequestBuilder request = RequestBuilder.patch( this.buildPartnerServiceApiUri() );
         try
         {
-            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ) ) );
-        }
-        catch ( UnsupportedEncodingException e )
-        {
-            throw new PartnerException( "", this.requestContext, PartnerErrorCategory.REQUEST_PARSING );
+            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ), "UTF-8" ) );
         }
         catch ( JsonProcessingException e )
         {
@@ -445,11 +436,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
         RequestBuilder request = RequestBuilder.put( this.buildPartnerServiceApiUri() );
         try
         {
-            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ) ) );
-        }
-        catch ( UnsupportedEncodingException e )
-        {
-            throw new PartnerException( "", this.requestContext, PartnerErrorCategory.REQUEST_PARSING );
+            request.setEntity( new StringEntity( getJsonConverter().writeValueAsString( content ), "UTF-8" ) );
         }
         catch ( JsonProcessingException e )
         {
